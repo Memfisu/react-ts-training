@@ -17,6 +17,10 @@
   display: flex;
 }
 
+.completed {
+  background-color: darkseagreen;
+}
+
 .todoItem:not(:first-child) {
   margin-top: 10px;
 }

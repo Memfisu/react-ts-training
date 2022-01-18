@@ -1,6 +1,6 @@
 export interface IAction {
     type: string;
-    payload: IData | number;
+    payload: IData | number; // todo
 }
 
 export interface IData {

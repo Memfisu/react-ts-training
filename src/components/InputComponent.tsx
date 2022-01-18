@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setData } from '../reducers/dataSetter';
 
@@ -14,12 +14,12 @@ const InputComponent: FC = () => {
       (e.target.value?.length > appropriateLength) ? setError(true) :setError(false);
   };
 
-  const handleClick = (): void => {
+  const handleClick = useCallback((): void => {
       if (!error) {
           dispatch(setData({ data: value }));
           setValue('');
       }
-  };
+  }, [dispatch, error, value]);
 
   return (
     <div className="inputComponent">
