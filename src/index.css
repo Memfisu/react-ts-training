@@ -3,9 +3,14 @@
   height: 85vh;
 }
 
-.inputContainer {
+.inputComponent {
   display: flex;
   justify-content: center;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .todoItem {
@@ -17,7 +22,12 @@
 }
 
 .commonButton {
+  height: 23px;
   margin-left: 20px;
+}
+
+.errorBox {
+  color: red;
 }
 
 body {
