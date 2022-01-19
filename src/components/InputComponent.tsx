@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FC, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setData } from '../reducers/dataSetter';
-
-const appropriateLength = 10; // Новая запись добавляется при условии, что её длина меньше N символов или равна ей;
+import { appropriateLength } from '../constants/constants';
 
 const InputComponent: FC = () => {
   const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const InputComponent: FC = () => {
 
   const handleClick = useCallback((): void => {
       if (!error) {
-          dispatch(setData({ data: value }));
+          dispatch(setData({ data: value, id: 0 }));
           setValue('');
       }
   }, [dispatch, error, value]);

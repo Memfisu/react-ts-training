@@ -1,30 +1,26 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteData } from '../reducers/dataSetter';
+import React, { useCallback } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {changeStatus, deleteData} from '../reducers/dataSetter';
+import {dataListSelector} from "../selectors/selectors";
+import {IData} from "../interfaces/interfaces";
 
 interface IProps {
     data: string,
-    index: number
+    id: number
 }
 
-const TodoItem = ({ data, index }: IProps) => {
+const TodoItem = ({ data, id }: IProps) => {
   const dispatch = useDispatch();
-  const [isCompleted, setCompleted] = useState<boolean>(false);
+  const currentItem = useSelector(dataListSelector).find((item: IData) => item.id === id);
+  const isCompleted = currentItem ? currentItem.completed : false;
 
   const handleClick = useCallback((): void => {
-      dispatch(deleteData(index));
-  }, [dispatch, index]);
+      dispatch(deleteData(id));
+  }, [dispatch, id]);
 
   const handleComplete = useCallback(():void => {
-    if (!isCompleted) {
-        setCompleted(true);
-        // dispatch(); // todo
-    }
-    else {
-        setCompleted(false);
-        // dispatch();
-    }
-  }, [isCompleted]);
+    dispatch(changeStatus(id));
+  }, [dispatch, id]);
 
   return (
     <div className="todoItem">
